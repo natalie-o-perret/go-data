@@ -1,0 +1,15 @@
+<data>
+  <catalog>
+    <name>Example Press</name>
+  </catalog>
+  <publications>
+    <id>pub-001</id>
+    <title>Field Notes</title>
+    <file_bytes>8388608</file_bytes>
+  </publications>
+  <publications>
+    <id>pub-002</id>
+    <title>Short Stories</title>
+    <file_bytes>4194304</file_bytes>
+  </publications>
+</data>

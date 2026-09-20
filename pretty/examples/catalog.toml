@@ -1,0 +1,12 @@
+[catalog]
+name = "Example Press"
+
+[[publications]]
+id = "pub-001"
+title = "Field Notes"
+file_bytes = 8388608
+
+[[publications]]
+id = "pub-002"
+title = "Short Stories"
+file_bytes = 4194304
