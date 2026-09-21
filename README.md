@@ -13,6 +13,7 @@ deterministic traversal of decoded Go values.
 | `data/toml` | TOML codec and deterministic formatting |
 | `data/xml` | Standard-library XML codec and formatting |
 | `data/pretty` | Deterministic tree and table rendering for decoded values |
+| `data/barcode` | Common 1D and 2D barcode encoding and decoding |
 
 Package import paths use `github.com/natalie-o-perret/go-data` as their base.
 
@@ -32,6 +33,7 @@ go get github.com/natalie-o-perret/go-data/yaml
 go get github.com/natalie-o-perret/go-data/toml
 go get github.com/natalie-o-perret/go-data/xml
 go get github.com/natalie-o-perret/go-data/pretty
+go get github.com/natalie-o-perret/go-data/barcode
 ```
 
 All packages live in one Go module. The module lists dependencies needed across
@@ -66,6 +68,17 @@ Formatting policies:
 
 XML needs typed structs for useful marshaling and unmarshaling because
 `encoding/xml` has no generic `map[string]any` representation.
+
+## Barcodes
+
+`barcode.Encode` renders common one-dimensional formats, QR codes, and Data
+Matrix codes as `image.Image` values. `barcode.Decode` detects those formats,
+plus Aztec and RSS-14, in any `image.Image`:
+
+```go
+img, err := barcode.Encode("hello", barcode.QRCode, 256, 256)
+result, err := barcode.Decode(img)
+```
 
 ## Traversal
 
