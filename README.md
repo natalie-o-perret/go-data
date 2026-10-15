@@ -8,6 +8,7 @@ deterministic traversal of decoded Go values.
 | Package | Purpose |
 | --- | --- |
 | `data` | Shared deterministic traversal and non-mutating transformation |
+| `data/anonymize` | Shape-preserving identifier anonymization |
 | `data/json` | JSON codec and formatting |
 | `data/yaml` | YAML v3 codec and formatting |
 | `data/toml` | TOML codec and deterministic formatting |
@@ -23,6 +24,7 @@ Install the shared traversal package:
 
 ```sh
 go get github.com/natalie-o-perret/go-data
+go get github.com/natalie-o-perret/go-data/anonymize
 ```
 
 Or install the format package you need:
@@ -104,6 +106,23 @@ Shared non-cyclic containers are visited at every occurrence. `Transform`
 clones each occurrence independently and does not mutate the input. A container
 reached again on its active traversal path returns `ErrRecursive`. Callback
 errors are returned unchanged.
+
+## Identifier Anonymization
+
+`anonymize.Identifiers` replaces identifier-shaped values and object keys in
+decoded data without mutating the input:
+
+```go
+result, err := anonymize.Identifiers(value)
+```
+
+Names such as `id`, `organization_id`, and `requestId` are recognized. Exact
+UUIDs and hexadecimal strings of at least 16 characters are also replaced.
+Repeated values share one replacement, while strings and numbers retain their
+shape and type. Mapping state exists only for the call.
+
+This is identifier anonymization, not complete privacy redaction. Names, email
+addresses, tokens, and free text need separate handling.
 
 ## Pretty Rendering
 
