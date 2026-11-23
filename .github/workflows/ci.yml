@@ -17,8 +17,8 @@ jobs:
   build-test:
     uses: natalie-o-perret/.github/.github/workflows/reusable-build-test-go.yml@main
     with:
-      go-versions: '["1.25","1.26"]'
-      go-version-latest: "1.26"
+      go-versions: '["1.25","1.26","stable"]'
+      go-version-latest: stable
       coverage-threshold: 80
   lint:
     uses: natalie-o-perret/.github/.github/workflows/reusable-lint.yml@main
